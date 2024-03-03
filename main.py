@@ -23,11 +23,7 @@ while len(correct_answer) < 50:
     answer_state = screen.textinput(title=f"{ len(correct_answer)}/50 Guess the State",
                                     prompt="What's another state's name?").title()
     if answer_state == "Exit":
-        to_learn_states = []
-        for state in states:
-            if state not in correct_answer:
-                to_learn_states.append(state)
-        print(to_learn_states)
+        to_learn_states = [state for state in states if state not in correct_answer]
         to_learn_data = pandas.DataFrame(to_learn_states)
         to_learn_data.to_csv("states_to_learn.csv")
         break
